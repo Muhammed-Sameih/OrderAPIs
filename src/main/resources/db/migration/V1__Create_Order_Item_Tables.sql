@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS order_item;
+DROP TABLE IF EXISTS orders;
 
 -- Create the Order table
 CREATE TABLE orders (
