@@ -74,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 
 
         BigDecimal totalBeforeDiscount = calculateTotalPrice(savedOrder.getOrderItems());
-        BigDecimal totalAfterDiscount = applyCouponDiscount(savedOrder.getCoupon(), totalBeforeDiscount);
+        BigDecimal totalAfterDiscount = applyCouponDiscount(savedOrder.getCoupon(), totalBeforeDiscount, savedOrder.getCode());
         order.setTotalPrice(totalAfterDiscount);
 
         // Withdraw the order total from the bank
@@ -104,9 +104,10 @@ public class OrderServiceImpl implements OrderService {
         return total;
     }
 
-    private BigDecimal applyCouponDiscount(Coupon coupon, BigDecimal totalBeforeDiscount) {
-        ResponseModel couponApplyResponse = restApiClient.postApplyCoupon(new CouponServiceRequest());
-        return calculateTotalPriceAfterDiscount(coupon, totalBeforeDiscount);
+    private BigDecimal applyCouponDiscount(Coupon coupon, BigDecimal totalBeforeDiscount,String orderCode) {
+        BigDecimal totalPriceAfterDiscount = calculateTotalPriceAfterDiscount(coupon, totalBeforeDiscount);
+        ResponseModel couponApplyResponse = restApiClient.postApplyCoupon(new CouponServiceRequest(orderCode,totalBeforeDiscount,totalPriceAfterDiscount));
+        return totalPriceAfterDiscount;
     }
 
     private BigDecimal calculateTotalPriceAfterDiscount(Coupon coupon, BigDecimal totalPriceBeforeDiscount){
