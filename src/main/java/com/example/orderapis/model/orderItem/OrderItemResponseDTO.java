@@ -27,5 +27,7 @@ public class OrderItemResponseDTO {
     @DecimalMin(value = "0.0", message = "Price cannot be negative")
     private BigDecimal price;
 
-    private List<ShipmentItemDTO> shipmentItemDTOs;
+
+
+    private boolean is_shipped;
 }

@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -168,7 +167,7 @@ public class OrderServiceImpl implements OrderService {
 
     //Search by customer email and date range
     @Override
-    public List<OrderResponseDTO> findByCustomerAndRange(CustomerDTO customerModel, LocalDate startDate, LocalDate endDate) {
+    public List<OrderResponseDTO> findByCustomerAndRange(CustomerDTO customerModel, LocalDateTime startDate, LocalDateTime endDate) {
         return orderRepo.findByCustomerAndOrderDateBetween(customerRepo.findByEmail(customerModel.getEmail()).orElseThrow(()->new RecordNotFoundException("Invalid customer Email!")), startDate, endDate)
                 .stream()
                 .map(orderMapper:: toDTO)
