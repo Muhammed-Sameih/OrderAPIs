@@ -13,13 +13,15 @@ public class ShipmentItem {
     private Long id;
 
 
-    @ManyToOne
-    @JoinColumn(name = "shipment_id")
-    private Shipment shipment;
+
 
     @ManyToOne
     @JoinColumn(name = "order_item_id")
     private OrderItem orderItem;
+
+    @ManyToOne
+    @JoinColumn(name = "shipment_id")
+    private Shipment shipment;
 
     @ManyToOne
     @JoinColumn(name = "store_id")

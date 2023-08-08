@@ -18,10 +18,10 @@ public interface OrderMapper {
     public Order toEntity(OrderRequestDTO orderRequestDTO);
 
 
-    @Mapping(target = "shipmentDate", source = "order.orderDate") // Map orderDate to shipmentDate
+    @Mapping(target = "orderDate", source = "order.orderDate") // Map orderDate to shipmentDate
     @Mapping(target = "totalPrice", source = "order.totalPrice") // Map totalPrice
     @Mapping(target = "orderItems", source = "order.orderItems") // Map orderItems
-    @Mapping(target = "couponRequestDTO", source = "order.coupon") // Map coupon to couponRequestDTO
-    @Mapping(target = "customerDTO", source = "order.customer") // Map customer to customerDTO
+    @Mapping(target = "coupon", source = "order.coupon") // Map coupon to couponRequestDTO
+    @Mapping(target = "customer", source = "order.customer") // Map customer to customerDTO
     public OrderResponseDTO toDTO(Order order);
 }
