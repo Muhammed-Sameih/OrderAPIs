@@ -5,30 +5,40 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "ORDERS")
 @Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "customer_id")
-    private Long customer_id;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    @Column(name = "coupon_id")
-    private Long coupon_id;
+    @ManyToOne
+    @JoinColumn(name = "coupon_id")
+    private Coupon coupon;
 
     @Column(name = "order_date")
     private LocalDateTime orderDate;
 
-    @Column(name = "total_amount")
-    private BigDecimal total_amount;
+    @Column(name = "total_price")
+    private BigDecimal totalPrice;
 
     @Column(name = "status")
     private String status;
+
+    @Column(name = "code")
+    private String code;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems = new ArrayList<>();;
 
 
 }

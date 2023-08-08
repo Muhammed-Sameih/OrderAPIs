@@ -3,24 +3,25 @@ package com.example.orderapis.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "order_item")
+@Table(name = "ORDER_ITEM")
 @Data
 public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_item_id")
-    private Long orderItemId;
+    @Column(name = "id")
 
+    private Long Id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @Column(name = "is_shipped")
+    private boolean is_shipped;
 
-    @Column(name = "product_id")
-    private Long productId;
+    @Column(name = "product_code")
+    private String product_code;
 
     @Column(name = "quantity")
     private Long quantity;
@@ -28,4 +29,10 @@ public class OrderItem {
     @Column(name = "price")
     private BigDecimal price;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @OneToMany(mappedBy = "orderItem")
+    private List<ShipmentItem> shipmentItems = new ArrayList<>();
 }
