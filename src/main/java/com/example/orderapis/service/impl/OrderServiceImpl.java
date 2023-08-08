@@ -16,6 +16,7 @@ import com.example.orderapis.model.orderItem.OrderItemRequestDTO;
 import com.example.orderapis.model.store.StoreServiceResponse;
 import com.example.orderapis.repository.*;
 import com.example.orderapis.service.OrderService;
+import com.example.orderapis.util.OrderCodeGenerator;
 import com.example.orderapis.util.RestApiClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,7 @@ public class OrderServiceImpl implements OrderService {
 
         order.setOrderDate(LocalDateTime.now());
         order.setStatus("PENDING");
+        order.setCode(OrderCodeGenerator.generateOrderCode());
 
         Order savedOrder = orderRepo.save(order);
 
