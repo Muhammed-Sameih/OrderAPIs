@@ -1,19 +1,16 @@
 package com.example.orderapis.mapper;
 
-
 import com.example.orderapis.entity.OrderItem;
-import com.example.orderapis.model.orderItem.OrderItemRequestDTO;
-import com.example.orderapis.model.orderItem.OrderItemResponseDTO;
+import com.example.orderapis.model.orderItem.OrderItemModelForRequest;
+import com.example.orderapis.model.orderItem.OrderItemModelForResponse;
+import jakarta.validation.Valid;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface OrderItemMapper {
-
-    public OrderItem toEntity(OrderItemRequestDTO orderItemRequestDTO);
-
-    @Mapping(source = "product_code", target = "product_code")
-    @Mapping(source = "quantity", target = "quantity")
-    @Mapping(source = "price", target = "price")
-    public OrderItemResponseDTO toDTO(OrderItem orderItem);
+    @Mapping(target = "order", ignore = true)
+    OrderItem toEntity(@Valid OrderItemModelForRequest orderItemModel);
+    OrderItemModelForResponse toModel(OrderItem orderItem);
 }
+
