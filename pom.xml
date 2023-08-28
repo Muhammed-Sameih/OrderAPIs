@@ -124,7 +124,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.example.orderapis.OrderApIsApplication.java</mainClass>
+					<mainClass>com.example.orderapis.OrderApIsApplication</mainClass>
 					<layout>JAR</layout>
 				</configuration>
 				<executions>
