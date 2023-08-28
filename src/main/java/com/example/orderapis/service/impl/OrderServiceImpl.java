@@ -1,6 +1,7 @@
 package com.example.orderapis.service.impl;
 
 
+
 import org.springframework.core.env.Environment;
 import com.example.orderapis.entity.Order;
 import com.example.orderapis.entity.OrderItem;
@@ -23,7 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
         order = applyCouponIsExists(order, orderModel.getCoupon());
 
         // Step 4: Perform a transaction to charge the customer for the order
-        this.withdrawFromBank(orderModel.getCvv(), orderModel.getCvv(), order.getTotalPrice());
+        this.withdrawFromBank(orderModel.getCardNumber(), orderModel.getCvv(), order.getTotalPrice());
         this.depositFromBank(order.getTotalPrice());
 
         // Step 5: Consume products from stores and get required shipment information
@@ -69,8 +69,9 @@ public class OrderServiceImpl implements OrderService {
         // Step 6: Initiate the shipping process for the order
         this.shippingOrder(order.getCode(), orderModel.getCustomerEmail(),orderModel.getLocation(),storesInfo);
 
-        // Step 7: Save the order to the repository
+        // Step 7: Save the order to the repository and relate items to order
         orderRepo.save(order);
+        orderItemService.relateToOrder(order, order.getOrderItems());
     }
     BigDecimal calculateTotalPrice(List<OrderItem> orderItems) {
         return orderItems.stream()

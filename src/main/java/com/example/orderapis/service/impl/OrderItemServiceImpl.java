@@ -1,5 +1,6 @@
 package com.example.orderapis.service.impl;
 
+import com.example.orderapis.entity.Order;
 import com.example.orderapis.entity.OrderItem;
 import com.example.orderapis.mapper.OrderItemMapper;
 import com.example.orderapis.model.orderItem.OrderItemModelForRequest;
@@ -31,5 +32,16 @@ public class OrderItemServiceImpl implements OrderItemService {
                 })
                 .collect(Collectors.toList());
         return orderItemRepo.saveAll(orderItems);
+    }
+
+    @Override
+    public void relateToOrder(Order order,List<OrderItem> items){
+        items = items.stream()
+                .map(item ->{
+                    item.setOrder(order);
+                    return item;
+                })
+                .collect(Collectors.toList());
+        orderItemRepo.saveAll(items);
     }
 }
