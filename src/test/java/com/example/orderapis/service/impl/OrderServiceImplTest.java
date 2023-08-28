@@ -92,7 +92,7 @@ public class OrderServiceImplTest {
     @Test
     void shouldCreateOrderSuccessfully() {
         // Arrange
-        List<ProductModelForConsume> products = Collections.singletonList(new ProductModelForConsume("product123",2L));
+        List<ProductModelForConsume> products = Collections.singletonList(new ProductModelForConsume(2L, "product123"));
         List<StoreModelResponse> storesInfo = Collections.singletonList(new StoreModelResponse("STORE123","Cairo",products));
         ShippingModel shippingModel = new ShippingModel("ORDER123",orderModel.getCustomerEmail(),orderModel.getLocation(),storesInfo);
 
