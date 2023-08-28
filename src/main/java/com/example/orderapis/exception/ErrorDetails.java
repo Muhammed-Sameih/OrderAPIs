@@ -12,14 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ErrorDetails {
-
     private String message;
-
     private List<String> details;
-
     private boolean success;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy hh:mm:ss")
     private Date timeStamp;
-
 }

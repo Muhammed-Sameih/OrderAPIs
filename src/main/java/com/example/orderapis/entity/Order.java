@@ -1,7 +1,9 @@
 package com.example.orderapis.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,15 +13,13 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "coupon_id")
@@ -31,6 +31,9 @@ public class Order {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
+    @Column(name = "customer_email")
+    private String customerEmail;
+
     @Column(name = "status")
     private String status;
 
@@ -39,6 +42,4 @@ public class Order {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();;
-
-
 }

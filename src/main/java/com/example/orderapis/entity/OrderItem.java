@@ -1,27 +1,29 @@
 package com.example.orderapis.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "ORDER_ITEM")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
 
     private Long Id;
 
-    @Column(name = "is_shipped")
-    private boolean is_shipped;
+    @Column(name = "code")
+    private String code;
 
     @Column(name = "product_code")
-    private String product_code;
+    private String productCode;
 
     @Column(name = "quantity")
     private Long quantity;
@@ -32,7 +34,4 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
-
-    @OneToMany(mappedBy = "orderItem", cascade = CascadeType.ALL)
-    private List<ShipmentItem> shipmentItems = new ArrayList<>();
 }

@@ -1,9 +1,11 @@
 package com.example.orderapis.service;
 
 import com.example.orderapis.entity.Coupon;
-import com.example.orderapis.model.coupon.CouponRequestDTO;
-import com.example.orderapis.model.coupon.CouponResponseDTO;
+import com.example.orderapis.model.coupon.CouponModelForRequest;
+
+import java.math.BigDecimal;
 
 public interface CouponService {
-    public Coupon createOrFindCoupon(CouponRequestDTO couponDTO);
+    Coupon createOrFindCoupon(CouponModelForRequest couponModel);
+    BigDecimal applyCouponDiscount(Coupon coupon, BigDecimal totalBeforeDiscount, String orderCode);
 }

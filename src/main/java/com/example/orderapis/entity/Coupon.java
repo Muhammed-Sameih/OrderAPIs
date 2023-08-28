@@ -1,13 +1,17 @@
 package com.example.orderapis.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "COUPON")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +26,4 @@ public class Coupon {
 
     @Column(name = "discount_value_or_percentage")
     private BigDecimal discount_value_or_percentage;
-
 }
