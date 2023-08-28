@@ -96,8 +96,8 @@ you can do this :
  ┗ 📂resources
  ┃ ┣ 📂db
  ┃ ┃ ┗ 📂migration
- ┃ ┃ ┃ ┣ 📜V2__create_order_orderItem_coupon_talbles.sql
- ┃ ┃ ┃ ┗ 📜V3__Change_Coupon_Code_Data_Type.sql
+ ┃ ┃ ┃ ┣ 📜V1__create_order_orderItem_coupon_talbles.sql
+ ┃ ┃ ┃ ┗ 📜V2__Change_Coupon_Code_Data_Type.sql
  ┃ ┗ 📜application.properties
 ```
 
