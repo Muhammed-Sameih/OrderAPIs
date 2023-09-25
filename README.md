@@ -126,12 +126,12 @@ https://order-service-yn10.onrender.com/swagger-ui/index.html#/
 
 ## Installation
 
-To run the Bank Management System locally, you will need the following:
+To run the Orders System locally, you will need the following:
 - Java 17 or higher
 - Maven
 - PostgreSQL
 
-Once you have the required tools installed, follow these steps to install the Bank Management System:
+Once you have the required tools installed, follow these steps to install the Orders System:
 
 1. Clone this repository:
     ```shell
